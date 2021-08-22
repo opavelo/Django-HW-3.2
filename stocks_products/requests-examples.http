@@ -7,8 +7,8 @@ POST http://127.0.0.1:8000/api/v1/products/
 Content-Type: application/json
 
 {
-  "title": "tomato",
-  "description": "btyn"
+  "title": "orange",
+  "description": "yellow"
 }
 
 ###
@@ -20,7 +20,7 @@ Content-Type: application/json
 ###
 
 # обновление продукта
-PATCH http://127.0.0.1:8000/api/v1/products/1/
+PATCH http://127.0.0.1:8000/api/v1/products/3/
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 ###
 
 # удаление продукта
-DELETE http://127.0.0.1:8000/api/v1/products/1/
+DELETE http://127.0.0.1:8000/api/v1/products/2/
 Content-Type: application/json
 
 ###
@@ -46,44 +46,58 @@ POST http://127.0.0.1:8000/api/v1/stocks/
 Content-Type: application/json
 
 {
-  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru3",
+  "address": "street_000",
   "positions": [
     {
       "product": 2,
-      "quantity": 250,
-      "price": 120.50
+      "quantity": 100,
+      "price": 2.50
     },
     {
-      "product": 3,
-      "quantity": 100,
-      "price": 180
+      "product": 5,
+      "quantity": 10,
+      "price": 1000
     }
   ]
 }
 
+### удаление склада
+DELETE http://127.0.0.1:8000/api/v1/stocks/12/
+Content-Type: application/json
+
 ###
+GET http://127.0.0.1:8000/api/v1/stocks/
+Content-Type: application/json
+
+####
 
 # обновляем записи на складе
-PATCH http://127.0.0.1:8000/api/v1/stocks/4/
+PATCH http://127.0.0.1:8000/api/v1/stocks/17/
 Content-Type: application/json
 
 {
   "positions": [
     {
       "product": 2,
-      "quantity": 100,
+      "quantity": 1000,
       "price": 130.80
     },
     {
-      "product": 3,
-      "quantity": 243,
-      "price": 145
+      "product": 5,
+      "quantity": 1243,
+      "price": 1450
     }
   ]
 }
 
 ###
 
+# поиск складов, по адресу
+GET http://127.0.0.1:8000/api/v1/stocks/?address=street_111
+Content-Type: application/json
+
+###
+
 # поиск складов, где есть определенный продукт
-GET http://127.0.0.1:8000/api/v1/?products=2
+GET http://127.0.0.1:8000/api/v1/stocks/?products=1
 Content-Type: application/json
